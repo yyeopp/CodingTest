@@ -1,9 +1,10 @@
 package steps.s09;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
-public class boj1978 {
-
+public class boj2581 {
 	public static boolean isPrimeNo(int n) {
 
 		if (n == 1) {
@@ -32,24 +33,31 @@ public class boj1978 {
 
 	public static void main(String[] args) {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		
+		StringBuilder sb = new StringBuilder();
+
 		try {
+			int M = Integer.parseInt(br.readLine());
 			int N = Integer.parseInt(br.readLine());
-			String [] temp = br.readLine().split(" ");
-			int [] tc  = new int [N];
-			int count = 0;
-			for (int i = 0; i < tc.length; i++) {
-				tc[i] = Integer.parseInt(temp[i]);
-				if(boj1978.isPrimeNo(tc[i]) == true) {
-					count++;
+			List<Integer> pN = new ArrayList<Integer>();
+			int sum = 0;
+			for (int i = M; i <= N; i++) {
+				if (boj2581.isPrimeNo(i) == true) {
+					pN.add(i);
+					sum += i;
 				}
+
 			}
-			System.out.println(count);
-			
-			
+			if (pN.size() != 0) {
+				sb.append(sum).append("\n").append(pN.get(0));
+			}
+			else if(pN.size() == 0){
+				sb.append(-1);
+			}
+			System.out.println(sb);
 		} catch (NumberFormatException | IOException e) {
 			e.printStackTrace();
 		}
+
 	}
 
 }
