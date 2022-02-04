@@ -9,12 +9,11 @@ public class SWEA1873 {
 	static int[] dx = { -1, 1, 0, 0 };
 	static int[] dy = { 0, 0, -1, 1 };
 	static char[][] map = null;
-	
-	
+
 	static void move(int[] carPos, char dir) {
 		if (dir == 'U') {
 			shape = car[0];
-			map[carPos[0]][carPos[1]] = shape;
+
 			carPos[0] += dx[0];
 			carPos[1] += dy[0];
 
@@ -30,12 +29,10 @@ public class SWEA1873 {
 				return;
 			}
 
-			map[carPos[0] - dx[0]][carPos[1] - dy[0]] = '.';
-
 		}
 		if (dir == 'D') {
 			shape = car[1];
-			map[carPos[0]][carPos[1]] = shape;
+
 			carPos[0] += dx[1];
 			carPos[1] += dy[1];
 			if (carPos[0] < 0 || carPos[1] < 0 || carPos[0] >= map.length || carPos[1] >= map[0].length) {
@@ -50,12 +47,10 @@ public class SWEA1873 {
 				return;
 			}
 
-			map[carPos[0] - dx[1]][carPos[1] - dy[1]] = '.';
-
 		}
 		if (dir == 'L') {
 			shape = car[2];
-			map[carPos[0]][carPos[1]] = shape;
+
 			carPos[0] += dx[2];
 			carPos[1] += dy[2];
 			if (carPos[0] < 0 || carPos[1] < 0 || carPos[0] >= map.length || carPos[1] >= map[0].length) {
@@ -70,12 +65,10 @@ public class SWEA1873 {
 				return;
 			}
 
-			map[carPos[0] - dx[2]][carPos[1] - dy[2]] = '.';
-
 		}
 		if (dir == 'R') {
 			shape = car[3];
-			map[carPos[0]][carPos[1]] = shape;
+
 			carPos[0] += dx[3];
 			carPos[1] += dy[3];
 			if (carPos[0] < 0 || carPos[1] < 0 || carPos[0] >= map.length || carPos[1] >= map[0].length) {
@@ -89,7 +82,6 @@ public class SWEA1873 {
 				carPos[1] -= dy[3];
 				return;
 			}
-			map[carPos[0] - dx[3]][carPos[1] - dy[3]] = '.';
 
 		}
 
@@ -189,6 +181,7 @@ public class SWEA1873 {
 							carPosition[0] = i;
 							carPosition[1] = j;
 							shape = map[i][j];
+							map[i][j] = '.';
 						}
 					}
 				}
@@ -196,28 +189,21 @@ public class SWEA1873 {
 				int N = Integer.parseInt(br.readLine());
 				char[] order = br.readLine().toCharArray();
 				for (int i = 0; i < N; i++) {
-					sb.append(order[i]).append("\n");
 					if (order[i] == 'S') {
-						
+
 						shoot(carPosition, order[i]);
-					}
-					else {
+					} else {
 						move(carPosition, order[i]);
-					}
-					for (int k = 0; k < map.length; k++) {
-						for (int j = 0; j < map[k].length; j++) {
-							sb.append(map[k][j]);
-						}
-						sb.append("\n");
 					}
 
 				}
-//				for (int i = 0; i < map.length; i++) {
-//					for (int j = 0; j < map[i].length; j++) {
-//						sb.append(map[i][j]);
-//					}
-//					sb.append("\n");
-//				}
+				map[carPosition[0]][carPosition[1]] = shape;
+				for (int i = 0; i < map.length; i++) {
+					for (int j = 0; j < map[i].length; j++) {
+						sb.append(map[i][j]);
+					}
+					sb.append("\n");
+				}
 			}
 			System.out.println(sb);
 		} catch (NumberFormatException | IOException e) {

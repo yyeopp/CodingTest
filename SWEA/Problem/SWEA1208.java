@@ -20,28 +20,40 @@ public class SWEA1208 {
 			for (int i = 0; i < 100; i++) {
 				box[i] = Integer.parseInt(st.nextToken());	// 박스 채우기
 			}
-			int max = 1;
-			int min = 100;
-			for (int i = 0; i < d; i++) {		// 덤프 시작
+			// 박스는 100개의 칸
+			
+			int result = 0;
+			for (int i = 0; i < d; i++) {		// 덤프 시작 - 300번쯤 함.
 				
-				for (int j = 0; j < 100; j++) {
-					if (box[j] >= max) {
+				
+				int idxMax = 0;
+				int idxMin = 0;
+				int max = 1;
+				int min = 100;	
+				
+				for (int j = 0; j < 100; j++) {		// 덤프 1회 당 박스를 1번씩 순회
+					if (box[j] >= max) {		// 박스 속 숫자랑 맥스값 비교
 						max = box[j];
-						System.out.println(max);
-						
+						idxMax = j;			// 맥스값이 바뀐 경우 idx를 저장
 					}
 					if (box[j] <= min) {
 						min = box[j];
+						idxMin = j;
 					}
 				}
-				if(max-min == 0 || max-min == 1) {
-					sb.append(max-min + "\n");
-					System.out.println("breaked");
+				result = max-min;
+				
+				if(result == 0 || result == 1) {
+					sb.append(result + "\n");
 					break;
 				}
-				max--;
-				min++;
+				box[idxMax] --;
+				box[idxMin] ++;
+				
+				
 			}
+			sb.append(result + "\n");
+			
 			
 		}
 		System.out.println(sb);
