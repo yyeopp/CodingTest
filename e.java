@@ -1,6 +1,3 @@
-
-
-
 package swea;
 
 import java.io.*;
@@ -11,16 +8,11 @@ public class SWEA1873 {
 	static char[] dir = { 'U', 'D', 'L', 'R' };
 	static int[] dx = { -1, 1, 0, 0 };
 	static int[] dy = { 0, 0, -1, 1 };
-
+	
+	
 	static void move(int[] carPos, char dir, char[][] map) {
-	/*//
-	.-#**
-	.-.#*
-	.-..#
-	*/
 		if (dir == 'U') {
 			shape = car[0];
-
 			map[carPos[0]][carPos[1]] = shape;
 			carPos[0] += dx[0];
 			carPos[1] += dy[0];
@@ -38,6 +30,7 @@ public class SWEA1873 {
 			}
 
 			map[carPos[0] - dx[0]][carPos[1] - dy[0]] = '.';
+
 		}
 		if (dir == 'D') {
 			shape = car[1];
@@ -57,6 +50,7 @@ public class SWEA1873 {
 			}
 
 			map[carPos[0] - dx[1]][carPos[1] - dy[1]] = '.';
+
 		}
 		if (dir == 'L') {
 			shape = car[2];
@@ -76,6 +70,7 @@ public class SWEA1873 {
 			}
 
 			map[carPos[0] - dx[2]][carPos[1] - dy[2]] = '.';
+
 		}
 		if (dir == 'R') {
 			shape = car[3];
@@ -94,6 +89,7 @@ public class SWEA1873 {
 				return;
 			}
 			map[carPos[0] - dx[3]][carPos[1] - dy[3]] = '.';
+
 		}
 
 	}
@@ -199,20 +195,28 @@ public class SWEA1873 {
 				int N = Integer.parseInt(br.readLine());
 				char[] order = br.readLine().toCharArray();
 				for (int i = 0; i < N; i++) {
-					if (order[i] == dir[0] || order[i] == dir[1] || order[i] == dir[2] || order[i] == dir[3]) {
+					sb.append(order[i]).append("\n");
+					if (order[i] == 'S') {
+						
+						shoot(carPosition, order[i], map);
+					}
+					else {
 						move(carPosition, order[i], map);
 					}
-					if (order[i] == 'S') {
-						shoot(carPosition, order[i], map);
+					for (int k = 0; k < map.length; k++) {
+						for (int j = 0; j < map[k].length; j++) {
+							sb.append(map[k][j]);
+						}
+						sb.append("\n");
 					}
 
 				}
-				for (int i = 0; i < map.length; i++) {
-					for (int j = 0; j < map[i].length; j++) {
-						sb.append(map[i][j]);
-					}
-					sb.append("\n");
-				}
+//				for (int i = 0; i < map.length; i++) {
+//					for (int j = 0; j < map[i].length; j++) {
+//						sb.append(map[i][j]);
+//					}
+//					sb.append("\n");
+//				}
 			}
 			System.out.println(sb);
 		} catch (NumberFormatException | IOException e) {
