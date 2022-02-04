@@ -17,7 +17,7 @@ public class SWEA1873 {
 	.-#**
 	.-.#*
 	.-..#
-	//
+	*/
 		if (dir == 'U') {
 			shape = car[0];
 
