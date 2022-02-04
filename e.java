@@ -1,3 +1,6 @@
+
+
+
 package swea;
 
 import java.io.*;
@@ -10,6 +13,11 @@ public class SWEA1873 {
 	static int[] dy = { 0, 0, -1, 1 };
 
 	static void move(int[] carPos, char dir, char[][] map) {
+	/*//
+	.-#**
+	.-.#*
+	.-..#
+	//
 		if (dir == 'U') {
 			shape = car[0];
 
