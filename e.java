@@ -8,9 +8,10 @@ public class SWEA1873 {
 	static char[] dir = { 'U', 'D', 'L', 'R' };
 	static int[] dx = { -1, 1, 0, 0 };
 	static int[] dy = { 0, 0, -1, 1 };
+	static char[][] map = null;
 	
 	
-	static void move(int[] carPos, char dir, char[][] map) {
+	static void move(int[] carPos, char dir) {
 		if (dir == 'U') {
 			shape = car[0];
 			map[carPos[0]][carPos[1]] = shape;
@@ -94,7 +95,7 @@ public class SWEA1873 {
 
 	}
 
-	static void shoot(int[] carPos, char dir, char[][] map) {
+	static void shoot(int[] carPos, char dir) {
 
 		int[] fire = { carPos[0], carPos[1] };
 
@@ -174,7 +175,7 @@ public class SWEA1873 {
 				int H = Integer.parseInt(temp.split(" ")[0]);
 				int W = Integer.parseInt(temp.split(" ")[1]);
 
-				char[][] map = new char[H][W]; // 전체 맵
+				map = new char[H][W]; // 전체 맵
 
 				for (int i = 0; i < map.length; i++) {
 					map[i] = br.readLine().toCharArray();
@@ -198,10 +199,10 @@ public class SWEA1873 {
 					sb.append(order[i]).append("\n");
 					if (order[i] == 'S') {
 						
-						shoot(carPosition, order[i], map);
+						shoot(carPosition, order[i]);
 					}
 					else {
-						move(carPosition, order[i], map);
+						move(carPosition, order[i]);
 					}
 					for (int k = 0; k < map.length; k++) {
 						for (int j = 0; j < map[k].length; j++) {
