@@ -2,7 +2,7 @@ package steps.s09;
 
 import java.io.*;
 
-public class boj1929 {
+public class boj4948 {
 	public static boolean isPrimeNo(int n) {
 
 		if (n == 1) {
@@ -29,25 +29,23 @@ public class boj1929 {
 
 	}
 
-	public static void main(String[] args) {
-
+	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringBuilder sb = new StringBuilder();
 
-		try {
-			String[] temp = br.readLine().split(" ");
-			int[] tc = new int[2];
+		while (true) {
+			int n = Integer.parseInt(br.readLine());
+			if(n==0) break;
 			int count = 0;
-			for (int i = 0; i < tc.length; i++) {
-				tc[i] = Integer.parseInt(temp[i]);
-				if (boj1929.isPrimeNo(tc[i]) == true) {
+			for (int i = n; i <= 2 * n; i++) {
+				if (isPrimeNo(i) == true) {
 					count++;
 				}
+
 			}
-			System.out.println(count);
-
-		} catch (NumberFormatException | IOException e) {
-			e.printStackTrace();
+			sb.append(count+"\n");
 		}
-	}
+		System.out.println(sb);
 
+	}
 }
