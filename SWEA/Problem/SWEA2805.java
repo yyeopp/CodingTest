@@ -13,7 +13,7 @@ public class SWEA2805 {
 		for (int tc = 1; tc <= T; tc++) {
 			sb.append("#").append(tc).append(" ");
 			int N = Integer.parseInt(br.readLine());
-
+			
 			int[][] map = new int[N][N];
 			for (int i = 0; i < map.length; i++) {
 				String[] temp = br.readLine().split("");
