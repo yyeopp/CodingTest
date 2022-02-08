@@ -8,7 +8,7 @@ public class boj2798 {
 	static int[] tc;
 	static int N, M;
 	static int result;
-	static int answer = 0;
+	static int answer;
 
 	public static void blackjack(int cnt, int start) {
 		if (cnt == 3) {
@@ -17,13 +17,17 @@ public class boj2798 {
 			}
 			if (result >= answer) {
 				answer = result;
+
 			}
 			return;
+
 		}
 
 		for (int i = start; i < N; i++) {
 			result += tc[i];
-			blackjack(cnt + 1, start + 1);
+			blackjack(cnt + 1, i + 1);
+
+			result -= tc[i];
 		}
 
 	}
@@ -32,16 +36,15 @@ public class boj2798 {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st1 = new StringTokenizer(br.readLine());
 		N = Integer.parseInt(st1.nextToken());
-		M = Integer.parseInt(st1.nextToken()); // 맥시멈
+		M = Integer.parseInt(st1.nextToken());
 		StringTokenizer st2 = new StringTokenizer(br.readLine());
 		tc = new int[N];
 		for (int i = 0; i < N; i++) {
 			tc[i] = Integer.parseInt(st2.nextToken());
-		} // tc에 있는 숫자들 조합으로 더해야 함
+		}
 
 		blackjack(0, 0);
 		System.out.println(answer);
-
 	}
 
 }
