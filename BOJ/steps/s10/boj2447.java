@@ -2,98 +2,48 @@ package steps.s10;
 
 import java.io.*;
 
-public class boj2447 {
-	static void blank() {
-		System.out.print("   "+"\n"+"   "+"\n"+"   ");
-	}
+public class BOJ2447 {
 
-	static void star(int N) {
-		int idx = N / 3;
+	static int N;
+	static char[][] map;
 
-		if (N == 3) {
-			for (int i = 0; i < N; i++) {
-				if (i / idx == 0) {
-					for (int j = 0; j < N; j++) {
-						System.out.print('*');
-					}
-				 	System.out.println();
-				}
+	static void star(int size, int x, int y) {
 
-				if (i / idx == 1) {
-					for (int j = 0; j < N; j++) {
-						if (j / idx == 0) {
-							System.out.print('*');
-						}
-						if (j / idx == 1) {
-							System.out.print(' ');
-						}
-						if (j / idx == 2) {
-							System.out.print('*');
-						}
-					}
-					System.out.println();
-				}
-
-				if (i / idx == 2) {
-					for (int j = 0; j < N; j++) {
-						System.out.print('*');
-					}
-				}
-			}
-//			System.out.print("***");
-//			System.out.println();
-//			System.out.print("* *");
-//			System.out.println();
-//			System.out.print("***");
+		if (size == 1) {
+			map[x][y] = '*';
 			return;
 		}
 
-		if (N > 3) {
-			for (int i = 0; i < idx; i++) {
-				if (i / idx == 0) {
-					star(N / 3);
-				}
-				
-
-				if (i / idx == 1) {
-					for (int j = 0; j < idx; j++) {
-						if (j / idx == 0) {
-							star(N / 3);
-						}
-						if (j / idx == 1) {
-							blank();
-						}
-						if (j / idx == 2) {
-							star(N / 3);
-						}
-					}
-					
-				}
-
-				if (i / idx == 2) {
-					star(N / 3);
-				}
-			}
-		}
+		star(size / 3, x, y);
+		star(size / 3, x, y + size / 3);
+		star(size / 3, x, y + 2 * size / 3);
+		star(size / 3, x + size / 3, y);
+		star(size / 3, x + size / 3, y + 2 * size / 3);
+		star(size / 3, x + 2 * size / 3, y);
+		star(size / 3, x + 2 * size / 3, y + size / 3);
+		star(size / 3, x + 2 * size / 3, y + 2 * size / 3);
 
 	}
 
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int N = Integer.parseInt(br.readLine());
-		star(N);
+		StringBuilder sb = new StringBuilder();
+		N = Integer.parseInt(br.readLine());
+
+		map = new char[N][N];
+		star(N, 0, 0);
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				if (map[i][j] != '*') {
+					sb.append(' ');
+				} else {
+					sb.append(map[i][j]);
+				}
+			}
+			sb.append("\n");
+		}
+		System.out.println(sb);
 
 	}
 
 }
-/*
- * // if (N >3) { for (int i = 0; i < N; i++) { if (i / idx == 0) { for (int j =
- * 0; j < N; j++) { System.out.print('*'); } System.out.println(); }
- * 
- * if (i / idx == 1) { for (int j = 0; j < N; j++) { if (j / idx == 0) {
- * System.out.print('*'); } if (j / idx == 1) { System.out.print(' '); } if (j /
- * idx == 2) { System.out.print('*'); } } System.out.println(); }
- * 
- * if (i / idx == 2) { for (int j = 0; j < N; j++) { System.out.print('*'); } }
- * } }
- */
