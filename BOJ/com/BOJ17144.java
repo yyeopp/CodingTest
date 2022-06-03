@@ -55,7 +55,6 @@ public class BOJ17144 {
 				}
 			}
 		}
-
 		for (int i = 0; i < T; i++) {
 			map = spread(map);
 			map = flow(map);
@@ -63,10 +62,6 @@ public class BOJ17144 {
 		}
 
 		int answer = 0;
-
-		for (int i = 0; i < map.length; i++) {
-			System.out.println(Arrays.toString(map[i]));
-		}
 
 		for (Dust dust : dusts) {
 			answer += dust.d;
@@ -113,7 +108,17 @@ public class BOJ17144 {
 
 		int[][] result = new int[R][C];
 
-		// ac[0]이랑 ac[1] 사용 예정
+		for (int i = 1; i < ac[0]; i++) {
+			for (int j = 1; j < C - 1; j++) {
+				result[i][j] = map[i][j];
+			}
+		}
+
+		for (int i = ac[1] + 1; i < R - 1; i++) {
+			for (int j = 1; j < C - 1; j++) {
+				result[i][j] = map[i][j];
+			}
+		}
 
 		int[] top = { ac[0], 0 };
 
